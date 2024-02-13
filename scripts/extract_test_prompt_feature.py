@@ -1,12 +1,15 @@
 import torch
 import os
 import numpy as np
+import sys
+cwd = os.getcwd()
+sys.path.append(cwd)
 import libs.autoencoder
 import libs.clip
 from datasets import MSCOCODatabase
 import argparse
 from tqdm import tqdm
-
+import pickle
 
 def main():
     prompts = [
@@ -33,7 +36,9 @@ def main():
     latent = clip.encode(prompts)
     for i in range(len(latent)):
         c = latent[i].detach().cpu().numpy()
-        np.save(os.path.join(save_dir, f'{i}.npy'), (prompts[i], c))
+        with open(os.path.join(save_dir, f'{i}.pkl'), 'wb') as f:
+            pickle.dump((prompts[i], c), f)
+
 
 
 if __name__ == '__main__':

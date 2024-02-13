@@ -1,6 +1,9 @@
 import torch
 import os
 import numpy as np
+import sys
+cwd = os.getcwd()
+sys.path.append(cwd)
 import libs.autoencoder
 import libs.clip
 from datasets import MSCOCODatabase
@@ -11,6 +14,7 @@ from tqdm import tqdm
 def main(resolution=256):
     parser = argparse.ArgumentParser()
     parser.add_argument('--split', default='train')
+    parser.add_argument('--text_emb', default='clip')
     args = parser.parse_args()
     print(args)
 
@@ -33,9 +37,13 @@ def main(resolution=256):
 
     autoencoder = libs.autoencoder.get_model('assets/stable-diffusion/autoencoder_kl.pth')
     autoencoder.to(device)
-    clip = libs.clip.FrozenCLIPEmbedder()
-    clip.eval()
-    clip.to(device)
+
+    if args.text_emb == "clip":
+        clip = libs.clip.FrozenCLIPEmbedder()
+        clip.eval()
+        clip.to(device)
+    elif args.text_emb == "w2v":
+        wv = libs.emb.WV('assets/text_embedder/w2v_coco_768.model')
 
     with torch.no_grad():
         for idx, data in tqdm(enumerate(datas)):
@@ -48,7 +56,11 @@ def main(resolution=256):
             moments = moments.detach().cpu().numpy()
             np.save(os.path.join(save_dir, f'{idx}.npy'), moments)
 
-            latent = clip.encode(captions)
+            if args.text_emb == "clip": 
+                latent = clip.encode(captions)
+            elif args.text_emb == "w2v":
+                latent = wv.encode(captions)
+
             for i in range(len(latent)):
                 c = latent[i].detach().cpu().numpy()
                 np.save(os.path.join(save_dir, f'{idx}_{i}.npy'), c)

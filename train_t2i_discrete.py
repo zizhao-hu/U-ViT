@@ -256,6 +256,8 @@ def train(config):
             logging.info(f'Save and eval checkpoint {train_state.step}...')
             if accelerator.local_process_index == 0:
                 train_state.save(os.path.join(config.ckpt_root, f'{train_state.step}.ckpt'))
+            torch.cuda.empty_cache()
+        if train_state.step == config.train.n_steps:
             accelerator.wait_for_everyone()
             fid = eval_step(n_samples=10000, sample_steps=50)  # calculate fid of the saved checkpoint
             step_fid.append((train_state.step, fid))

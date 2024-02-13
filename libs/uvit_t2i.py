@@ -144,7 +144,7 @@ class UViT(nn.Module):
         self.in_chans = in_chans
 
         self.patch_embed = PatchEmbed(patch_size=patch_size, in_chans=in_chans, embed_dim=embed_dim)
-        num_patches = (img_size // patch_size) ** 2
+        self.num_patches = (img_size // patch_size) ** 2
 
         self.time_embed = nn.Sequential(
             nn.Linear(embed_dim, 4 * embed_dim),
@@ -156,23 +156,45 @@ class UViT(nn.Module):
 
         self.extras = 1 + num_clip_token
 
-        self.pos_embed = nn.Parameter(torch.zeros(1, self.extras + num_patches, embed_dim))
+        self.pos_embed = nn.Parameter(torch.zeros(1, self.extras + self.num_patches, embed_dim))
 
-        self.in_blocks = nn.ModuleList([
+        c = 1
+        v = 4
+        depth -= 2*(v)
+
+        self.image_blocks = nn.ModuleList([
             Block(
                 dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, qk_scale=qk_scale,
                 norm_layer=norm_layer, use_checkpoint=use_checkpoint)
-            for _ in range(depth // 2)])
+            for _ in range(v)])
+        
+        self.caption_blocks = nn.ModuleList([
+            Block(
+                dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, qk_scale=qk_scale,
+                norm_layer=norm_layer, use_checkpoint=use_checkpoint)
+            for _ in range(c)])
+        
+        self.joint_blocks = nn.ModuleList([
+            Block(
+                dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, qk_scale=qk_scale,
+                norm_layer=norm_layer, use_checkpoint=use_checkpoint)
+            for _ in range(depth//2)])
 
         self.mid_block = Block(
                 dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, qk_scale=qk_scale,
                 norm_layer=norm_layer, use_checkpoint=use_checkpoint)
 
-        self.out_blocks = nn.ModuleList([
+        self.joint_skip_blocks = nn.ModuleList([
             Block(
                 dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, qk_scale=qk_scale,
-                norm_layer=norm_layer, skip=skip, use_checkpoint=use_checkpoint)
-            for _ in range(depth // 2)])
+                norm_layer=norm_layer, skip = skip, use_checkpoint=use_checkpoint)
+            for _ in range(depth//2)])
+        
+        self.image_skip_blocks = nn.ModuleList([
+            Block(
+                dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, qk_scale=qk_scale,
+                norm_layer=norm_layer, skip = skip, use_checkpoint=use_checkpoint)
+            for _ in range(v)])
 
         self.norm = norm_layer(embed_dim)
         self.patch_dim = patch_size ** 2 * in_chans
@@ -202,23 +224,42 @@ class UViT(nn.Module):
         time_token = self.time_embed(timestep_embedding(timesteps, self.embed_dim))
         time_token = time_token.unsqueeze(dim=1)
         context_token = self.context_embed(context)
-        x = torch.cat((time_token, context_token, x), dim=1)
-        x = x + self.pos_embed
 
+        x = torch.cat((x, time_token), dim=1)
+        x = x + self.pos_embed[:,:L+1,:]
+
+        x_caption = context_token + self.pos_embed[:,L+1:,:]
+    
         skips = []
-        for blk in self.in_blocks:
+
+        ### separation
+        for blk in self.image_blocks:
+            x = blk(x)
+            skips.append(x)
+        
+        for blk in self.caption_blocks:
+            x_caption = blk(x_caption)
+        ###
+
+        x =  torch.cat((x, x_caption), dim=1)
+
+        for blk in self.joint_blocks:
             x = blk(x)
             skips.append(x)
 
         x = self.mid_block(x)
 
-        for blk in self.out_blocks:
+        for blk in self.joint_skip_blocks:
+            x = blk(x, skips.pop())
+
+        x = x[:,:L+1,:]
+        
+        for blk in self.image_skip_blocks:
             x = blk(x, skips.pop())
 
         x = self.norm(x)
         x = self.decoder_pred(x)
-        assert x.size(1) == self.extras + L
-        x = x[:, self.extras:, :]
+        x = x[:, :L, :]
         x = unpatchify(x, self.in_chans)
         x = self.final_layer(x)
         return x

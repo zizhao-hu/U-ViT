@@ -21,8 +21,8 @@ def get_config():
         n_steps=1000000,
         batch_size=256,
         log_interval=10,
-        eval_interval=5000,
-        save_interval=50000,
+        eval_interval=2000,
+        save_interval=10000,
     )
 
     config.optimizer = d(
@@ -65,7 +65,7 @@ def get_config():
         mini_batch_size=50,
         cfg=True,
         scale=1.,
-        path=''
+        path='workdir/mscoco_uvit_small/default/evalsamples'
     )
 
     return config
