@@ -31,10 +31,17 @@ Download `fid_stats` directory from this [link](https://drive.google.com/drive/f
 Put the downloaded directory as `assets/fid_stats` in this codebase.
 In addition to evaluation, these reference statistics are used to monitor FID during training.
 ## Configs
-In config files, change 
+In config files
 ```sh
-# MS-COCO (U-ViT-S/2)
-accelerate launch --num_processes 1 --mixed_precision fp16 train_t2i_discrete.py --config=configs/mscoco_uvit_small.py
+config.nnet = d(
+name='uvit_t2i'
+...,
+c = c,
+v = v,
+...
+)
+# change c and v for caption and image transformer depths
+# change name to 'uvit_t2i_old','uvit_t2i_cross','uvit_t2i', for original U-ViT-small, cross-attention, and self-attention Models
 ```
 ## Training
 We use the [huggingface accelerate](https://github.com/huggingface/accelerate) library to help train with distributed data parallel and mixed precision. The following is the training command:
