@@ -51,15 +51,7 @@ python tools/clipscore.py assets/datasets/coco256_features/val/eval_captions/cap
 ```
 
 ## References
-If you find the code useful for your research, please consider citing
-```bib
-@inproceedings{bao2022all,
-  title={All are Worth Words: A ViT Backbone for Diffusion Models},
-  author={Bao, Fan and Nie, Shen and Xue, Kaiwen and Cao, Yue and Li, Chongxuan and Su, Hang and Zhu, Jun},
-  booktitle = {CVPR},
-  year={2023}
-}
-```
+
 
 This implementation is based on
 * [Extended Analytic-DPM](https://github.com/baofff/Extended-Analytic-DPM) (provide the FID reference statistics on CIFAR10 and CelebA 64x64)
