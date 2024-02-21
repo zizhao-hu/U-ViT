@@ -46,6 +46,7 @@ accelerate launch --num_processes 1 --mixed_precision fp16 train_t2i_discrete.py
 accelerate launch --multi_gpu --num_processes 1 --mixed_precision fp16 eval_t2i_discrete.py --config=configs/mscoco_uvit_small.py --nnet_path=mscoco_uvit_small.pth
 
 # CLIP Score
+# The first JSON file containing 30000 test captions will be extracted by running 'python scripts/extract_mscoco_feature.py --split=val'
 python tools/clipscore.py assets/datasets/coco256_features/val/eval_captions/captions.json workdir/mscoco_uvit_small/uvit_t2i_old-c\=0-v\=0/ckpts/1000000.ckpt/eval_samples/
 ```
 
