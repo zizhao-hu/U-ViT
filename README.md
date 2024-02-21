@@ -19,8 +19,14 @@ Put the downloaded directory as `assets/stable-diffusion` in this codebase.
 The autoencoders are used in latent diffusion models.
 
 #### Data
-* MS-COCO: Download COCO 2014 [training](http://images.cocodataset.org/zips/train2014.zip), [validation](http://images.cocodataset.org/zips/val2014.zip) data and [annotations](http://images.cocodataset.org/annotations/annotations_trainval2014.zip). Then extract their features according to `scripts/extract_mscoco_feature.py` `scripts/extract_test_prompt_feature.py` `scripts/extract_empty_feature.py`.
-
+* MS-COCO: Download COCO 2014 [training](http://images.cocodataset.org/zips/train2014.zip), [validation](http://images.cocodataset.org/zips/val2014.zip) data and [annotations](http://images.cocodataset.org/annotations/annotations_trainval2014.zip). 
+* 
+```sh
+python scripts/extract_mscoco_feature.py
+python scripts/extract_mscoco_feature.py --split=val
+python scripts/extract_test_prompt_feature.py
+python scripts/extract_empty_feature.py
+```
 #### Reference statistics for FID
 Download `fid_stats` directory from this [link](https://drive.google.com/drive/folders/1yo-XhqbPue3rp5P57j6QbA5QZx6KybvP?usp=sharing) (which contains reference statistics for FID).
 Put the downloaded directory as `assets/fid_stats` in this codebase.
