@@ -30,7 +30,12 @@ python scripts/extract_empty_feature.py
 Download `fid_stats` directory from this [link](https://drive.google.com/drive/folders/1yo-XhqbPue3rp5P57j6QbA5QZx6KybvP?usp=sharing) (which contains reference statistics for FID).
 Put the downloaded directory as `assets/fid_stats` in this codebase.
 In addition to evaluation, these reference statistics are used to monitor FID during training.
-
+## Configs
+In config files, change 
+```sh
+# MS-COCO (U-ViT-S/2)
+accelerate launch --num_processes 1 --mixed_precision fp16 train_t2i_discrete.py --config=configs/mscoco_uvit_small.py
+```
 ## Training
 We use the [huggingface accelerate](https://github.com/huggingface/accelerate) library to help train with distributed data parallel and mixed precision. The following is the training command:
 
@@ -39,15 +44,21 @@ We use the [huggingface accelerate](https://github.com/huggingface/accelerate) l
 accelerate launch --num_processes 1 --mixed_precision fp16 train_t2i_discrete.py --config=configs/mscoco_uvit_small.py
 ```
 
+## Sampling
+```sh
+# Running will store the images generated from prompt file test.txt at --nnet_path
+accelerate launch --num_processes 1 --mixed_precision fp16 sample_t2i_discrete.py --config=configs/mscoco_uvit_small.py --nnet_path=nnet.pth --input_path=test.txt
+```
+
 ## Evaluation (MS-COCO (U-ViT-S/2))
 
 ```sh
 # FID
-accelerate launch --multi_gpu --num_processes 1 --mixed_precision fp16 eval_t2i_discrete.py --config=configs/mscoco_uvit_small.py --nnet_path=mscoco_uvit_small.pth
+accelerate launch --multi_gpu --num_processes 1 --mixed_precision fp16 eval_t2i_discrete.py --config=configs/mscoco_uvit_small.py --nnet_path=nnet.pth
 
 # CLIP Score
 # The first JSON file containing 30000 test captions will be extracted by running 'python scripts/extract_mscoco_feature.py --split=val'
-python tools/clipscore.py assets/datasets/coco256_features/val/eval_captions/captions.json workdir/mscoco_uvit_small/uvit_t2i_old-c\=0-v\=0/ckpts/1000000.ckpt/eval_samples/
+python tools/clipscore.py assets/datasets/coco256_features/val/eval_captions/captions.json workdir/*/*/ckpts/*.ckpt/eval_samples/
 ```
 
 ## References
