@@ -42,7 +42,7 @@ def evaluate(config):
 
     dataset = get_dataset(**config.dataset)
     test_dataset = dataset.get_split(split='test', labeled=True)  # for sampling
-    test_dataset_loader = DataLoader(test_dataset, batch_size=config.sample.mini_batch_size, shuffle=True,
+    test_dataset_loader = DataLoader(test_dataset, batch_size=config.sample.mini_batch_size, shuffle=False,
                                      drop_last=True, num_workers=8, pin_memory=True, persistent_workers=True)
 
     nnet = utils.get_nnet(**config.nnet)
@@ -116,7 +116,9 @@ def evaluate(config):
         return dpm_solver_sample(_n_samples, config.sample.sample_steps, context=_context)
 
     with tempfile.TemporaryDirectory() as temp_path:
-        path = config.sample.path or temp_path
+        path = os.path.dirname(config.nnet_path) or temp_path
+        path = os.path.join(path, 'eval_samples')
+
         if accelerator.is_main_process:
             os.makedirs(path, exist_ok=True)
         logging.info(f'Samples are saved in {path}')
@@ -124,6 +126,10 @@ def evaluate(config):
         if accelerator.is_main_process:
             fid = calculate_fid_given_paths((dataset.fid_stat, path))
             logging.info(f'nnet_path={config.nnet_path}, fid={fid}')
+            fid_score_file = os.path.join(path, f"fid_score_{config.sample.n_samples}samples.txt")
+            with open(fid_score_file, 'w') as file:
+                file.write(f"FID score: {fid}\n")
+            print(f"FID score written to {fid_score_file}")
 
 
 from absl import flags

@@ -10,7 +10,7 @@ import builtins
 import einops
 import libs.autoencoder
 import libs.clip
-from torchvision.utils import save_image
+from torchvision.utils import make_grid, save_image
 
 
 def stable_diffusion_beta_schedule(linear_start=0.00085, linear_end=0.0120, n_timestep=1000):
@@ -55,7 +55,7 @@ def evaluate(config):
     nnet = utils.get_nnet(**config.nnet)
     nnet = accelerator.prepare(nnet)
     logging.info(f'load nnet from {config.nnet_path}')
-    accelerator.unwrap_model(nnet).load_state_dict(torch.load(config.nnet_path, map_location='cpu'))
+    accelerator.unwrap_model(nnet).load_state_dict(torch.load(config.nnet_path, map_location=device))
     nnet.eval()
 
     def cfg_nnet(x, timesteps, context):
@@ -96,9 +96,11 @@ def evaluate(config):
     z = dpm_solver.sample(z_init, steps=config.sample.sample_steps, eps=1. / N, T=1.)
     samples = dataset.unpreprocess(decode(z))
 
-    os.makedirs(config.output_path, exist_ok=True)
-    for sample, prompt in zip(samples, prompts):
-        save_image(sample, os.path.join(config.output_path, f"{prompt}.png"))
+    output_path = os.path.join(os.path.dirname(config.nnet_path),'samples')
+    os.makedirs(output_path, exist_ok=True)
+    samples = make_grid(samples, 5)
+    save_image(samples, os.path.join(output_path, f'test.png'))
+    
 
 
 

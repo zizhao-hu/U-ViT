@@ -30,6 +30,12 @@ def get_nnet(name, **kwargs):
     elif name == 'uvit_t2i':
         from libs.uvit_t2i import UViT
         return UViT(**kwargs)
+    elif name == 'uvit_t2i_old':
+        from libs.uvit_t2i_old import UViT
+        return UViT(**kwargs)
+    elif name == 'uvit_t2i_cross':
+        from libs.uvit_t2i_cross import UViT
+        return UViT(**kwargs)
     else:
         raise NotImplementedError(name)
 

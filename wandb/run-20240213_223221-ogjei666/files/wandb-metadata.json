@@ -1,0 +1,168 @@
+{
+    "os": "Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "python": "3.10.13",
+    "heartbeatAt": "2024-02-14T06:32:27.905214",
+    "startedAt": "2024-02-14T06:32:21.615726",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "few-shot-meta-learner",
+    "codePathLocal": null,
+    "colab": "https://colab.research.google.com/notebook#fileId=1j28ItW0Yt7ja0eKogem_AWdT21QHxSH3",
+    "git": {
+        "remote": "https://github.com/baofff/U-ViT",
+        "commit": "6f8c3d4eb23eaecefed286964a79994610ba9722"
+    },
+    "email": null,
+    "root": "/home/zizhao/development/U-ViT",
+    "host": "ZIZHAO-GPU0-24GB",
+    "username": "zizhao",
+    "executable": "/home/zizhao/miniconda3/envs/py310/bin/python",
+    "cpu_count": 12,
+    "cpu_count_logical": 24,
+    "cpu_freq": {
+        "current": 3417.5979999999986,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3417.598,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 1006.853931427002,
+            "used": 299.9860038757324
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 4090",
+            "memory_total": 25757220864
+        }
+    ],
+    "memory": {
+        "total": 15.534698486328125
+    }
+}

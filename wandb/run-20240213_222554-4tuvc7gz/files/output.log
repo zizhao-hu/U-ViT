@@ -1,0 +1,159 @@
+Starting experiment...
+Start of experience:  0
+Current Classes:  [0, 35, 5, 40, 10, 45, 15, 20, 25, 30]
+-- >> Start of training phase << --
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:02<00:00,  9.48it/s]
+Epoch 0 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0150
+	Time_Epoch/train_phase/train_stream/Task000 = 2.5300
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.1354
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:02<00:00, 10.75it/s]
+Epoch 1 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0041
+	Time_Epoch/train_phase/train_stream/Task000 = 2.2328
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.3628
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:02<00:00, 10.54it/s]
+Epoch 2 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0040
+	Time_Epoch/train_phase/train_stream/Task000 = 2.2753
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.6275
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:02<00:00, 10.61it/s]
+Epoch 3 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0040
+	Time_Epoch/train_phase/train_stream/Task000 = 2.2599
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.8193
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:02<00:00, 10.60it/s]
+Epoch 4 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0042
+	Time_Epoch/train_phase/train_stream/Task000 = 2.2620
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9113
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:02<00:00, 10.61it/s]
+Epoch 5 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0040
+	Time_Epoch/train_phase/train_stream/Task000 = 2.2618
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9373
+
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:02<00:00, 10.60it/s]
+Epoch 6 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0040
+	Time_Epoch/train_phase/train_stream/Task000 = 2.2627
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9700
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:02<00:00, 10.27it/s]
+Epoch 7 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0041
+	Time_Epoch/train_phase/train_stream/Task000 = 2.3354
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9773
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:02<00:00, 10.11it/s]
+Epoch 8 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0041
+	Time_Epoch/train_phase/train_stream/Task000 = 2.3724
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9907
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:02<00:00, 10.27it/s]
+Epoch 9 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0040
+	Time_Epoch/train_phase/train_stream/Task000 = 2.3368
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9920
+-- >> End of training phase << --
+Training completed
+Computing accuracy on the whole test set
+-- >> Start of eval phase << --
+-- Starting eval on experience 0 (Task 0) from test stream --
+
+
+
+
+
+
+
+
+100%|████████████████████████████████████████████████████████████████████████████████| 352/352 [00:20<00:00, 16.88it/s]
+> Eval on experience 0 (Task 0) from test stream ended.
+	Top1_Acc_Exp/eval_phase/test_stream/Task000/Exp000 = 0.0611
+-- >> End of eval phase << --
+	ConfusionMatrix_Stream/eval_phase/test_stream =
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [2, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [1, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]])
+	StreamForgetting/eval_phase/test_stream = 0.0000
+	Top1_Acc_Stream/eval_phase/test_stream/Task000 = 0.0611
+Start of experience:  1
+Current Classes:  [20]
+-- >> Start of training phase << --
+100%|████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  5.93it/s]
+Epoch 0 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0621
+	Time_Epoch/train_phase/train_stream/Task000 = 0.5049
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.8830
+100%|████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  5.83it/s]
+Epoch 1 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0633
+	Time_Epoch/train_phase/train_stream/Task000 = 0.5144
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9357
+100%|████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  5.82it/s]
+Epoch 2 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0643
+	Time_Epoch/train_phase/train_stream/Task000 = 0.5145
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9371
+100%|████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  5.80it/s]
+Epoch 3 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0636
+	Time_Epoch/train_phase/train_stream/Task000 = 0.5155
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9576
+100%|████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  5.94it/s]
+Epoch 4 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0619
+	Time_Epoch/train_phase/train_stream/Task000 = 0.5040
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9459
+100%|████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  5.84it/s]
+Epoch 5 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0631
+	Time_Epoch/train_phase/train_stream/Task000 = 0.5120
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9708
+100%|████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  5.79it/s]
+Epoch 6 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0647
+	Time_Epoch/train_phase/train_stream/Task000 = 0.5174
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9678
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0636█████████████████████████████| 3/3 [00:00<00:00,  5.85it/s]
+Epoch 7 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0633
+	Time_Epoch/train_phase/train_stream/Task000 = 0.5116
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9868
+100%|████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  5.81it/s]
+Epoch 8 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0643
+	Time_Epoch/train_phase/train_stream/Task000 = 0.5150
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9839
+100%|████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  5.78it/s]
+Epoch 9 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0636█████████████████████████████| 3/3 [00:00<00:00,  5.85it/s]
+	Time_Epoch/train_phase/train_stream/Task000 = 0.5171
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9868
+-- >> End of training phase << --
+Training completed
+Computing accuracy on the whole test set
+-- >> Start of eval phase << --
+-- Starting eval on experience 0 (Task 0) from test stream --
+ 14%|███████████                                                                      | 48/352 [00:02<00:18, 16.86it/s]
+ 23%|██████████████████▊                                                              | 82/352 [00:04<00:15, 17.06it/s]
+ 33%|██████████████████████████▏                                                     | 115/352 [00:06<00:14, 16.84it/s]
+ 43%|██████████████████████████████████                                              | 150/352 [00:08<00:12, 16.74it/s]
+ 51%|█████████████████████████████████████████▏                                      | 181/352 [00:10<00:10, 16.84it/s]
+ 51%|█████████████████████████████████████████▏                                      | 181/352 [00:10<00:10, 16.84it/s]
+ 51%|█████████████████████████████████████████▏                                      | 181/352 [00:10<00:10, 16.84it/s]
+ 51%|█████████████████████████████████████████▏                                      | 181/352 [00:10<00:10, 16.84it/s]
+ 51%|█████████████████████████████████████████▏                                      | 181/352 [00:10<00:10, 16.84it/s]
+ 51%|█████████████████████████████████████████▏                                      | 181/352 [00:10<00:10, 16.84it/s]
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9386                            | 181/352 [00:10<00:10, 16.84it/s]
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9649                            | 181/352 [00:10<00:10, 16.84it/s]
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9649                            | 181/352 [00:10<00:10, 16.84it/s]
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9649                            | 181/352 [00:10<00:10, 16.84it/s]
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9649                            | 181/352 [00:10<00:10, 16.84it/s]
+/home/zizhao/miniconda3/envs/py310/lib/python3.10/site-packages/wandb/sdk/wandb_run.py:2157: UserWarning: Run (kxx9tcft) is finished. The call to `_console_raw_callback` will be ignored. Please make sure that you are using an active run.
+  lambda data: self._console_raw_callback("stdout", data),
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9649                            | 181/352 [00:10<00:10, 16.84it/s]
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9649                            | 181/352 [00:10<00:10, 16.84it/s]

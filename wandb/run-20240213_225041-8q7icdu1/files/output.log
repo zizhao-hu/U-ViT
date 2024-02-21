@@ -1,0 +1,174 @@
+Starting experiment...
+Start of experience:  0
+Current Classes:  [1, 34, 67, 75, 46, 48, 18, 51, 19, 30]
+-- >> Start of training phase << --
+-- >> Start of eval phase << --
+-- Starting eval on experience 0 (Task 0) from test stream --
+100%|████████████████████████████████████████████████████████████████████████████████████| 8/8 [00:00<00:00, 14.74it/s]
+> Eval on experience 0 (Task 0) from test stream ended.
+	Top1_Acc_Exp/eval_phase/test_stream/Task000/Exp000 = 0.0000
+-- >> End of eval phase << --
+	ConfusionMatrix_Stream/eval_phase/test_stream =
+tensor([[ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0,  0, 13,  ..., 67,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        ...,
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0]])
+	StreamForgetting/eval_phase/test_stream = 0.0000
+	Top1_Acc_Stream/eval_phase/test_stream/Task000 = 0.0000
+100%|██████████████████████████████████████████████████████████████████████████████████| 40/40 [00:03<00:00, 12.48it/s]
+Epoch 0 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0020
+	Time_Epoch/train_phase/train_stream/Task000 = 3.2041
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.2114
+-- >> Start of eval phase << --
+-- Starting eval on experience 0 (Task 0) from test stream --
+100%|████████████████████████████████████████████████████████████████████████████████████| 8/8 [00:00<00:00, 23.65it/s]
+> Eval on experience 0 (Task 0) from test stream ended.
+	Top1_Acc_Exp/eval_phase/test_stream/Task000/Exp000 = 0.2800
+-- >> End of eval phase << --
+	ConfusionMatrix_Stream/eval_phase/test_stream =
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 1, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]])
+	StreamForgetting/eval_phase/test_stream = 0.0000
+	Top1_Acc_Stream/eval_phase/test_stream/Task000 = 0.2800
+
+100%|██████████████████████████████████████████████████████████████████████████████████| 40/40 [00:03<00:00, 12.43it/s]
+Epoch 1 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0020
+	Time_Epoch/train_phase/train_stream/Task000 = 3.2183
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.3174
+100%|██████████████████████████████████████████████████████████████████████████████████| 40/40 [00:03<00:00, 11.96it/s]
+Epoch 2 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0021
+	Time_Epoch/train_phase/train_stream/Task000 = 3.3438
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.3654
+
+100%|██████████████████████████████████████████████████████████████████████████████████| 40/40 [00:03<00:00, 11.94it/s]
+Epoch 3 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0021
+	Time_Epoch/train_phase/train_stream/Task000 = 3.3495
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.4002
+
+100%|██████████████████████████████████████████████████████████████████████████████████| 40/40 [00:03<00:00, 12.08it/s]
+Epoch 4 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0021
+	Time_Epoch/train_phase/train_stream/Task000 = 3.3099
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.4368
+100%|██████████████████████████████████████████████████████████████████████████████████| 40/40 [00:03<00:00, 11.93it/s]
+Epoch 5 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0022
+	Time_Epoch/train_phase/train_stream/Task000 = 3.3520
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.4546
+-- >> Start of eval phase << --
+-- Starting eval on experience 0 (Task 0) from test stream --
+100%|████████████████████████████████████████████████████████████████████████████████████| 8/8 [00:00<00:00, 22.26it/s]
+> Eval on experience 0 (Task 0) from test stream ended.
+	Top1_Acc_Exp/eval_phase/test_stream/Task000/Exp000 = 0.4740
+-- >> End of eval phase << --
+	ConfusionMatrix_Stream/eval_phase/test_stream =
+tensor([[ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0, 79,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        ...,
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0]])
+	StreamForgetting/eval_phase/test_stream = 0.0000
+	Top1_Acc_Stream/eval_phase/test_stream/Task000 = 0.4740
+100%|██████████████████████████████████████████████████████████████████████████████████| 40/40 [00:03<00:00, 12.05it/s]
+Epoch 6 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0022
+	Time_Epoch/train_phase/train_stream/Task000 = 3.3184
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.4752
+
+100%|██████████████████████████████████████████████████████████████████████████████████| 40/40 [00:03<00:00, 12.07it/s]
+Epoch 7 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0022
+	Time_Epoch/train_phase/train_stream/Task000 = 3.3134
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.4972
+100%|██████████████████████████████████████████████████████████████████████████████████| 40/40 [00:03<00:00, 12.57it/s]
+Epoch 8 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0020
+	Time_Epoch/train_phase/train_stream/Task000 = 3.1815
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.5172
+
+100%|██████████████████████████████████████████████████████████████████████████████████| 40/40 [00:03<00:00, 12.35it/s]
+Epoch 9 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0021
+	Time_Epoch/train_phase/train_stream/Task000 = 3.2376
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.5346
+-- >> Start of eval phase << --
+-- Starting eval on experience 0 (Task 0) from test stream --
+100%|████████████████████████████████████████████████████████████████████████████████████| 8/8 [00:00<00:00, 22.36it/s]
+> Eval on experience 0 (Task 0) from test stream ended.
+	Top1_Acc_Exp/eval_phase/test_stream/Task000/Exp000 = 0.5630
+-- >> End of eval phase << --
+	ConfusionMatrix_Stream/eval_phase/test_stream =
+tensor([[ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0, 62,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        ...,
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0]])
+	StreamForgetting/eval_phase/test_stream = 0.0000
+	Top1_Acc_Stream/eval_phase/test_stream/Task000 = 0.5630
+-- >> End of training phase << --
+Training completed
+Computing accuracy on the whole test set
+-- >> Start of eval phase << --
+-- Starting eval on experience 0 (Task 0) from test stream --
+100%|████████████████████████████████████████████████████████████████████████████████████| 8/8 [00:00<00:00, 23.25it/s]
+> Eval on experience 0 (Task 0) from test stream ended.
+	Top1_Acc_Exp/eval_phase/test_stream/Task000/Exp000 = 0.5630
+-- >> End of eval phase << --
+	ConfusionMatrix_Stream/eval_phase/test_stream =
+tensor([[ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0, 62,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        ...,
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0]])
+	StreamForgetting/eval_phase/test_stream = 0.0000
+	Top1_Acc_Stream/eval_phase/test_stream/Task000 = 0.5630
+Start of experience:  1
+Current Classes:  [66, 69, 7, 39, 76, 13, 14, 16, 22, 92]
+-- >> Start of training phase << --
+-- >> Start of eval phase << --
+-- Starting eval on experience 0 (Task 0) from test stream --
+100%|████████████████████████████████████████████████████████████████████████████████████| 8/8 [00:00<00:00, 23.15it/s]
+> Eval on experience 0 (Task 0) from test stream ended.
+	Top1_Acc_Exp/eval_phase/test_stream/Task000/Exp000 = 0.5630
+-- Starting eval on experience 1 (Task 0) from test stream --
+100%|████████████████████████████████████████████████████████████████████████████████████| 8/8 [00:00<00:00, 22.84it/s]
+> Eval on experience 1 (Task 0) from test stream ended.
+	Top1_Acc_Exp/eval_phase/test_stream/Task000/Exp001 = 0.0000
+-- >> End of eval phase << --
+	ConfusionMatrix_Stream/eval_phase/test_stream =
+tensor([[ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0, 62,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        ...,
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0]])
+	StreamForgetting/eval_phase/test_stream = 0.0000
+	Top1_Acc_Stream/eval_phase/test_stream/Task000 = 0.2815
+ 20%|████████████████▌                                                                  | 8/40 [00:01<00:05,  6.02it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████| 8/8 [00:00<00:00, 23.15it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████| 8/8 [00:00<00:00, 23.15it/s]
+> Eval on experience 1 (Task 0) from test stream ended.██████████████████████████████████| 8/8 [00:00<00:00, 23.15it/s]
+> Eval on experience 1 (Task 0) from test stream ended.██████████████████████████████████| 8/8 [00:00<00:00, 23.15it/s]
+> Eval on experience 1 (Task 0) from test stream ended.██████████████████████████████████| 8/8 [00:00<00:00, 23.15it/s]
+/home/zizhao/miniconda3/envs/py310/lib/python3.10/site-packages/wandb/sdk/wandb_run.py:2157: UserWarning: Run (ol9ea7ic) is finished. The call to `_console_raw_callback` will be ignored. Please make sure that you are using an active run.
+  lambda data: self._console_raw_callback("stdout", data),
+> Eval on experience 1 (Task 0) from test stream ended.██████████████████████████████████| 8/8 [00:00<00:00, 23.15it/s]

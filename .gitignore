@@ -1,0 +1,7 @@
+# Ignore directories
+workdir/
+
+# Ignore everything in assets
+/assets/*
+# But not text_embedder
+!/assets/text_embedder/

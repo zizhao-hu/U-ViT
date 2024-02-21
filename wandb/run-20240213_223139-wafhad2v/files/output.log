@@ -1,0 +1,57 @@
+Starting experiment...
+Start of experience:  0
+Current Classes:  [0, 35, 5, 40, 10, 45, 15, 20, 25, 30]
+-- >> Start of training phase << --
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:02<00:00, 11.33it/s]
+Epoch 0 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0148
+	Time_Epoch/train_phase/train_stream/Task000 = 2.1182
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.1174
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 13.03it/s]
+Epoch 1 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0032
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8415
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.4171
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 12.98it/s]
+Epoch 2 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0034
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8473
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.7312
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 13.04it/s]
+Epoch 3 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0033
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8399
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.8823
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 13.08it/s]
+Epoch 4 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0032
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8334
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9333
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 13.04it/s]
+Epoch 5 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0033
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8396
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9567
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 12.92it/s]
+Epoch 6 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0033
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8565
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9727
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 12.96it/s]
+Epoch 7 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0032
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8501
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9913
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 12.99it/s]
+Epoch 8 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0032
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8469
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9940
+
+ 71%|██████████████████████████████████████████████████████████                        | 17/24 [00:01<00:00, 12.81it/s]
+/home/zizhao/miniconda3/envs/py310/lib/python3.10/site-packages/wandb/sdk/wandb_run.py:2157: UserWarning: Run (4tuvc7gz) is finished. The call to `_console_raw_callback` will be ignored. Please make sure that you are using an active run.
+
+ 71%|██████████████████████████████████████████████████████████                        | 17/24 [00:15<00:00, 12.81it/s]Loading labels...
+Loading LUP...
+Loading labels names...
+Files already downloaded and verified

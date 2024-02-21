@@ -257,11 +257,13 @@ def train(config):
             if accelerator.local_process_index == 0:
                 train_state.save(os.path.join(config.ckpt_root, f'{train_state.step}.ckpt'))
             torch.cuda.empty_cache()
+
         if train_state.step == config.train.n_steps:
             accelerator.wait_for_everyone()
             fid = eval_step(n_samples=10000, sample_steps=50)  # calculate fid of the saved checkpoint
             step_fid.append((train_state.step, fid))
             torch.cuda.empty_cache()
+
         accelerator.wait_for_everyone()
 
     logging.info(f'Finish fitting, step={train_state.step}')
@@ -296,7 +298,7 @@ def get_config_name():
             return Path(argv[i].split('=')[-1]).stem
 
 
-def get_hparams():
+def get_hparams(config):
     argv = sys.argv
     lst = []
     for i in range(1, len(argv)):
@@ -309,14 +311,14 @@ def get_hparams():
             lst.append(f'{hparam}={val}')
     hparams = '-'.join(lst)
     if hparams == '':
-        hparams = 'default'
+        hparams = f'{config.nnet.name}-c={config.nnet.c}-v={config.nnet.v}'
     return hparams
 
 
 def main(argv):
     config = FLAGS.config
     config.config_name = get_config_name()
-    config.hparams = get_hparams()
+    config.hparams = get_hparams(config)
     config.workdir = FLAGS.workdir or os.path.join('workdir', config.config_name, config.hparams)
     config.ckpt_root = os.path.join(config.workdir, 'ckpts')
     config.sample_dir = os.path.join(config.workdir, 'samples')

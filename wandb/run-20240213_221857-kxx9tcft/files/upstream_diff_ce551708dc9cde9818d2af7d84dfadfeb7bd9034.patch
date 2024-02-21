@@ -1,0 +1,353 @@
+diff --git a/configs/mscoco_uvit_small.py b/configs/mscoco_uvit_small.py
+index 4df0247..eeaa9a4 100644
+--- a/configs/mscoco_uvit_small.py
++++ b/configs/mscoco_uvit_small.py
+@@ -21,8 +21,8 @@ def get_config():
+         n_steps=1000000,
+         batch_size=256,
+         log_interval=10,
+-        eval_interval=5000,
+-        save_interval=50000,
++        eval_interval=2000,
++        save_interval=10000,
+     )
+ 
+     config.optimizer = d(
+@@ -65,7 +65,7 @@ def get_config():
+         mini_batch_size=50,
+         cfg=True,
+         scale=1.,
+-        path=''
++        path='workdir/mscoco_uvit_small/default/evalsamples'
+     )
+ 
+     return config
+diff --git a/libs/uvit_t2i.py b/libs/uvit_t2i.py
+index 4c41658..df6583f 100644
+--- a/libs/uvit_t2i.py
++++ b/libs/uvit_t2i.py
+@@ -144,7 +144,7 @@ class UViT(nn.Module):
+         self.in_chans = in_chans
+ 
+         self.patch_embed = PatchEmbed(patch_size=patch_size, in_chans=in_chans, embed_dim=embed_dim)
+-        num_patches = (img_size // patch_size) ** 2
++        self.num_patches = (img_size // patch_size) ** 2
+ 
+         self.time_embed = nn.Sequential(
+             nn.Linear(embed_dim, 4 * embed_dim),
+@@ -156,23 +156,45 @@ class UViT(nn.Module):
+ 
+         self.extras = 1 + num_clip_token
+ 
+-        self.pos_embed = nn.Parameter(torch.zeros(1, self.extras + num_patches, embed_dim))
++        self.pos_embed = nn.Parameter(torch.zeros(1, self.extras + self.num_patches, embed_dim))
+ 
+-        self.in_blocks = nn.ModuleList([
++        c = 1
++        v = 4
++        depth -= 2*(v)
++
++        self.image_blocks = nn.ModuleList([
+             Block(
+                 dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, qk_scale=qk_scale,
+                 norm_layer=norm_layer, use_checkpoint=use_checkpoint)
+-            for _ in range(depth // 2)])
++            for _ in range(v)])
++        
++        self.caption_blocks = nn.ModuleList([
++            Block(
++                dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, qk_scale=qk_scale,
++                norm_layer=norm_layer, use_checkpoint=use_checkpoint)
++            for _ in range(c)])
++        
++        self.joint_blocks = nn.ModuleList([
++            Block(
++                dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, qk_scale=qk_scale,
++                norm_layer=norm_layer, use_checkpoint=use_checkpoint)
++            for _ in range(depth//2)])
+ 
+         self.mid_block = Block(
+                 dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, qk_scale=qk_scale,
+                 norm_layer=norm_layer, use_checkpoint=use_checkpoint)
+ 
+-        self.out_blocks = nn.ModuleList([
++        self.joint_skip_blocks = nn.ModuleList([
++            Block(
++                dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, qk_scale=qk_scale,
++                norm_layer=norm_layer, skip = skip, use_checkpoint=use_checkpoint)
++            for _ in range(depth//2)])
++        
++        self.image_skip_blocks = nn.ModuleList([
+             Block(
+                 dim=embed_dim, num_heads=num_heads, mlp_ratio=mlp_ratio, qkv_bias=qkv_bias, qk_scale=qk_scale,
+-                norm_layer=norm_layer, skip=skip, use_checkpoint=use_checkpoint)
+-            for _ in range(depth // 2)])
++                norm_layer=norm_layer, skip = skip, use_checkpoint=use_checkpoint)
++            for _ in range(v)])
+ 
+         self.norm = norm_layer(embed_dim)
+         self.patch_dim = patch_size ** 2 * in_chans
+@@ -202,23 +224,42 @@ class UViT(nn.Module):
+         time_token = self.time_embed(timestep_embedding(timesteps, self.embed_dim))
+         time_token = time_token.unsqueeze(dim=1)
+         context_token = self.context_embed(context)
+-        x = torch.cat((time_token, context_token, x), dim=1)
+-        x = x + self.pos_embed
+ 
++        x = torch.cat((x, time_token), dim=1)
++        x = x + self.pos_embed[:,:L+1,:]
++
++        x_caption = context_token + self.pos_embed[:,L+1:,:]
++    
+         skips = []
+-        for blk in self.in_blocks:
++
++        ### separation
++        for blk in self.image_blocks:
++            x = blk(x)
++            skips.append(x)
++        
++        for blk in self.caption_blocks:
++            x_caption = blk(x_caption)
++        ###
++
++        x =  torch.cat((x, x_caption), dim=1)
++
++        for blk in self.joint_blocks:
+             x = blk(x)
+             skips.append(x)
+ 
+         x = self.mid_block(x)
+ 
+-        for blk in self.out_blocks:
++        for blk in self.joint_skip_blocks:
++            x = blk(x, skips.pop())
++
++        x = x[:,:L+1,:]
++        
++        for blk in self.image_skip_blocks:
+             x = blk(x, skips.pop())
+ 
+         x = self.norm(x)
+         x = self.decoder_pred(x)
+-        assert x.size(1) == self.extras + L
+-        x = x[:, self.extras:, :]
++        x = x[:, :L, :]
+         x = unpatchify(x, self.in_chans)
+         x = self.final_layer(x)
+         return x
+diff --git a/scripts/extract_empty_feature.py b/scripts/extract_empty_feature.py
+index 455c708..201eeee 100644
+--- a/scripts/extract_empty_feature.py
++++ b/scripts/extract_empty_feature.py
+@@ -1,6 +1,9 @@
+ import torch
+ import os
+ import numpy as np
++import sys
++cwd = os.getcwd()
++sys.path.append(cwd)
+ import libs.autoencoder
+ import libs.clip
+ from datasets import MSCOCODatabase
+@@ -8,22 +11,30 @@ import argparse
+ from tqdm import tqdm
+ 
+ 
+-def main():
+-    prompts = [
+-        '',
+-    ]
+ 
++def main():
++    parser = argparse.ArgumentParser()
++    parser.add_argument('--text_emb', default='w2v')
++    args = parser.parse_args()
++    print(args)
+     device = 'cuda'
+-    clip = libs.clip.FrozenCLIPEmbedder()
+-    clip.eval()
+-    clip.to(device)
+-
+     save_dir = f'assets/datasets/coco256_features'
+-    latent = clip.encode(prompts)
+-    print(latent.shape)
++    os.makedirs(save_dir, exist_ok=True)
++    # empty caption feature
++    prompts = ['',]
++
++    if args.text_emb == "clip":       
++        clip = libs.clip.FrozenCLIPEmbedder()
++        clip.eval()
++        clip.to(device)
++        latent = clip.encode(prompts)
++    elif args.text_emb == "w2v":
++        latent = torch.zeros(1,77,768)
++  
+     c = latent[0].detach().cpu().numpy()
+     np.save(os.path.join(save_dir, f'empty_context.npy'), c)
+ 
+ 
++
+ if __name__ == '__main__':
+     main()
+diff --git a/scripts/extract_imagenet_feature.py b/scripts/extract_imagenet_feature.py
+deleted file mode 100644
+index b9833ec..0000000
+--- a/scripts/extract_imagenet_feature.py
++++ /dev/null
+@@ -1,57 +0,0 @@
+-import torch.nn as nn
+-import numpy as np
+-import torch
+-from datasets import ImageNet
+-from torch.utils.data import DataLoader
+-from libs.autoencoder import get_model
+-import argparse
+-from tqdm import tqdm
+-torch.manual_seed(0)
+-np.random.seed(0)
+-
+-
+-def main(resolution=256):
+-    parser = argparse.ArgumentParser()
+-    parser.add_argument('path')
+-    args = parser.parse_args()
+-
+-    dataset = ImageNet(path=args.path, resolution=resolution, random_flip=False)
+-    train_dataset = dataset.get_split(split='train', labeled=True)
+-    train_dataset_loader = DataLoader(train_dataset, batch_size=256, shuffle=False, drop_last=False,
+-                                      num_workers=8, pin_memory=True, persistent_workers=True)
+-
+-    model = get_model('assets/stable-diffusion/autoencoder_kl.pth')
+-    model = nn.DataParallel(model)
+-    device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+-    model.to(device)
+-
+-    # features = []
+-    # labels = []
+-
+-    idx = 0
+-    for batch in tqdm(train_dataset_loader):
+-        img, label = batch
+-        img = torch.cat([img, img.flip(dims=[-1])], dim=0)
+-        img = img.to(device)
+-        moments = model(img, fn='encode_moments')
+-        moments = moments.detach().cpu().numpy()
+-
+-        label = torch.cat([label, label], dim=0)
+-        label = label.detach().cpu().numpy()
+-
+-        for moment, lb in zip(moments, label):
+-            np.save(f'assets/datasets/imagenet{resolution}_features/{idx}.npy', (moment, lb))
+-            idx += 1
+-
+-    print(f'save {idx} files')
+-
+-    # features = np.concatenate(features, axis=0)
+-    # labels = np.concatenate(labels, axis=0)
+-    # print(f'features.shape={features.shape}')
+-    # print(f'labels.shape={labels.shape}')
+-    # np.save(f'imagenet{resolution}_features.npy', features)
+-    # np.save(f'imagenet{resolution}_labels.npy', labels)
+-
+-
+-if __name__ == "__main__":
+-    main()
+diff --git a/scripts/extract_mscoco_feature.py b/scripts/extract_mscoco_feature.py
+index 1b47063..f4debfd 100644
+--- a/scripts/extract_mscoco_feature.py
++++ b/scripts/extract_mscoco_feature.py
+@@ -1,6 +1,9 @@
+ import torch
+ import os
+ import numpy as np
++import sys
++cwd = os.getcwd()
++sys.path.append(cwd)
+ import libs.autoencoder
+ import libs.clip
+ from datasets import MSCOCODatabase
+@@ -11,6 +14,7 @@ from tqdm import tqdm
+ def main(resolution=256):
+     parser = argparse.ArgumentParser()
+     parser.add_argument('--split', default='train')
++    parser.add_argument('--text_emb', default='clip')
+     args = parser.parse_args()
+     print(args)
+ 
+@@ -33,9 +37,13 @@ def main(resolution=256):
+ 
+     autoencoder = libs.autoencoder.get_model('assets/stable-diffusion/autoencoder_kl.pth')
+     autoencoder.to(device)
+-    clip = libs.clip.FrozenCLIPEmbedder()
+-    clip.eval()
+-    clip.to(device)
++
++    if args.text_emb == "clip":
++        clip = libs.clip.FrozenCLIPEmbedder()
++        clip.eval()
++        clip.to(device)
++    elif args.text_emb == "w2v":
++        wv = libs.emb.WV('assets/text_embedder/w2v_coco_768.model')
+ 
+     with torch.no_grad():
+         for idx, data in tqdm(enumerate(datas)):
+@@ -48,7 +56,11 @@ def main(resolution=256):
+             moments = moments.detach().cpu().numpy()
+             np.save(os.path.join(save_dir, f'{idx}.npy'), moments)
+ 
+-            latent = clip.encode(captions)
++            if args.text_emb == "clip": 
++                latent = clip.encode(captions)
++            elif args.text_emb == "w2v":
++                latent = wv.encode(captions)
++
+             for i in range(len(latent)):
+                 c = latent[i].detach().cpu().numpy()
+                 np.save(os.path.join(save_dir, f'{idx}_{i}.npy'), c)
+diff --git a/scripts/extract_test_prompt_feature.py b/scripts/extract_test_prompt_feature.py
+index b51cb68..87c6dc2 100644
+--- a/scripts/extract_test_prompt_feature.py
++++ b/scripts/extract_test_prompt_feature.py
+@@ -1,12 +1,15 @@
+ import torch
+ import os
+ import numpy as np
++import sys
++cwd = os.getcwd()
++sys.path.append(cwd)
+ import libs.autoencoder
+ import libs.clip
+ from datasets import MSCOCODatabase
+ import argparse
+ from tqdm import tqdm
+-
++import pickle
+ 
+ def main():
+     prompts = [
+@@ -33,7 +36,9 @@ def main():
+     latent = clip.encode(prompts)
+     for i in range(len(latent)):
+         c = latent[i].detach().cpu().numpy()
+-        np.save(os.path.join(save_dir, f'{i}.npy'), (prompts[i], c))
++        with open(os.path.join(save_dir, f'{i}.pkl'), 'wb') as f:
++            pickle.dump((prompts[i], c), f)
++
+ 
+ 
+ if __name__ == '__main__':
+diff --git a/train_t2i_discrete.py b/train_t2i_discrete.py
+index cf3724d..69f7f6f 100644
+--- a/train_t2i_discrete.py
++++ b/train_t2i_discrete.py
+@@ -256,6 +256,8 @@ def train(config):
+             logging.info(f'Save and eval checkpoint {train_state.step}...')
+             if accelerator.local_process_index == 0:
+                 train_state.save(os.path.join(config.ckpt_root, f'{train_state.step}.ckpt'))
++            torch.cuda.empty_cache()
++        if train_state.step == config.train.n_steps:
+             accelerator.wait_for_everyone()
+             fid = eval_step(n_samples=10000, sample_steps=50)  # calculate fid of the saved checkpoint
+             step_fid.append((train_state.step, fid))

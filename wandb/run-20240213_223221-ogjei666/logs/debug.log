@@ -1,0 +1,62 @@
+2024-02-13 22:32:21,617 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Current SDK version is 0.16.2
+2024-02-13 22:32:21,617 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Configure stats pid to 3043945
+2024-02-13 22:32:21,617 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Loading settings from /home/zizhao/.config/wandb/settings
+2024-02-13 22:32:21,617 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Loading settings from /home/zizhao/development/U-ViT/wandb/settings
+2024-02-13 22:32:21,617 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-02-13 22:32:21,617 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-02-13 22:32:21,617 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program': '<python with no main file>'}
+2024-02-13 22:32:21,617 INFO    MainThread:3043945 [wandb_init.py:_log_setup():526] Logging user logs to /home/zizhao/development/U-ViT/wandb/run-20240213_223221-ogjei666/logs/debug.log
+2024-02-13 22:32:21,617 INFO    MainThread:3043945 [wandb_init.py:_log_setup():527] Logging internal logs to /home/zizhao/development/U-ViT/wandb/run-20240213_223221-ogjei666/logs/debug-internal.log
+2024-02-13 22:32:21,617 INFO    MainThread:3043945 [wandb_init.py:init():566] calling init triggers
+2024-02-13 22:32:21,617 INFO    MainThread:3043945 [wandb_init.py:init():573] wandb.init called with sweep_config: {}
+config: {}
+2024-02-13 22:32:21,617 INFO    MainThread:3043945 [wandb_init.py:init():591] re-initializing run, found existing run on stack: wafhad2v
+2024-02-13 22:32:21,618 INFO    MainThread:3043945 [wandb_run.py:_finish():1962] finishing run meta-class-incremental-learning/avalanche/wafhad2v
+2024-02-13 22:32:21,622 INFO    MainThread:3043945 [jupyter.py:save_history():474] saving 7 cells to _session_history.ipynb
+2024-02-13 22:32:21,623 INFO    MainThread:3043945 [wandb_run.py:_config_callback():1342] config_cb ('_wandb', 'session_history') code/_session_history.ipynb None
+2024-02-13 22:32:21,625 INFO    MainThread:3043945 [jupyter.py:_save_ipynb():384] looking for notebook: fileId=1j28ItW0Yt7ja0eKogem_AWdT21QHxSH3
+2024-02-13 22:32:21,625 INFO    MainThread:3043945 [wandb_init.py:_jupyter_teardown():454] cleaning up jupyter logic
+2024-02-13 22:32:21,625 INFO    MainThread:3043945 [wandb_run.py:_atexit_cleanup():2202] got exitcode: 0
+2024-02-13 22:32:21,626 INFO    MainThread:3043945 [wandb_run.py:_restore():2185] restore
+2024-02-13 22:32:21,626 INFO    MainThread:3043945 [wandb_run.py:_restore():2191] restore done
+2024-02-13 22:32:26,434 INFO    MainThread:3043945 [wandb_run.py:_footer_history_summary_info():3857] rendering history
+2024-02-13 22:32:26,435 INFO    MainThread:3043945 [wandb_run.py:_footer_history_summary_info():3889] rendering summary
+2024-02-13 22:32:26,437 INFO    MainThread:3043945 [wandb_run.py:_footer_sync_info():3816] logging synced files
+2024-02-13 22:32:26,503 INFO    MainThread:3043945 [wandb_init.py:init():616] starting backend
+2024-02-13 22:32:26,503 INFO    MainThread:3043945 [wandb_init.py:init():620] setting up manager
+2024-02-13 22:32:26,504 INFO    MainThread:3043945 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-02-13 22:32:26,504 INFO    MainThread:3043945 [wandb_init.py:init():628] backend started and connected
+2024-02-13 22:32:26,505 INFO    MainThread:3043945 [wandb_run.py:_label_probe_notebook():1294] probe notebook
+2024-02-13 22:32:26,505 INFO    MainThread:3043945 [wandb_run.py:_label_probe_notebook():1304] Unable to probe notebook: 'NoneType' object has no attribute 'get'
+2024-02-13 22:32:26,505 INFO    MainThread:3043945 [wandb_init.py:init():720] updated telemetry
+2024-02-13 22:32:26,507 INFO    MainThread:3043945 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2024-02-13 22:32:27,815 INFO    MainThread:3043945 [wandb_run.py:_on_init():2254] communicating current version
+2024-02-13 22:32:27,895 INFO    MainThread:3043945 [wandb_run.py:_on_init():2263] got version response upgrade_message: "wandb version 0.16.3 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-02-13 22:32:27,895 INFO    MainThread:3043945 [wandb_init.py:init():804] starting run threads in backend
+2024-02-13 22:32:29,074 INFO    MainThread:3043945 [wandb_run.py:_console_start():2233] atexit reg
+2024-02-13 22:32:29,075 INFO    MainThread:3043945 [wandb_run.py:_redirect():2088] redirect: wrap_raw
+2024-02-13 22:32:29,075 INFO    MainThread:3043945 [wandb_run.py:_redirect():2153] Wrapping output streams.
+2024-02-13 22:32:29,075 INFO    MainThread:3043945 [wandb_run.py:_redirect():2178] Redirects installed.
+2024-02-13 22:32:29,075 INFO    MainThread:3043945 [wandb_init.py:init():847] run started, returning control to user process
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Current SDK version is 0.16.2
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Configure stats pid to 3043945
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Loading settings from /home/zizhao/.config/wandb/settings
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Loading settings from /home/zizhao/development/U-ViT/wandb/settings
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program': '<python with no main file>'}
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_init.py:_log_setup():526] Logging user logs to /home/zizhao/development/U-ViT/wandb/run-20240213_224246-i8850ncr/logs/debug.log
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_init.py:_log_setup():527] Logging internal logs to /home/zizhao/development/U-ViT/wandb/run-20240213_224246-i8850ncr/logs/debug-internal.log
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_init.py:_jupyter_setup():472] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x7f8bdfd2dab0>
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_init.py:init():566] calling init triggers
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_init.py:init():573] wandb.init called with sweep_config: {}
+config: {}
+2024-02-13 22:42:46,351 INFO    MainThread:3043945 [wandb_init.py:init():591] re-initializing run, found existing run on stack: ogjei666
+2024-02-13 22:42:46,352 INFO    MainThread:3043945 [wandb_run.py:_finish():1962] finishing run meta-class-incremental-learning/avalanche/ogjei666
+2024-02-13 22:42:46,352 INFO    MainThread:3043945 [wandb_run.py:_atexit_cleanup():2202] got exitcode: 0
+2024-02-13 22:42:46,352 INFO    MainThread:3043945 [wandb_run.py:_restore():2185] restore
+2024-02-13 22:42:46,352 INFO    MainThread:3043945 [wandb_run.py:_restore():2191] restore done
+2024-02-13 22:42:49,304 INFO    MainThread:3043945 [wandb_run.py:_footer_history_summary_info():3857] rendering history
+2024-02-13 22:42:49,305 INFO    MainThread:3043945 [wandb_run.py:_footer_history_summary_info():3889] rendering summary
+2024-02-13 22:42:49,307 INFO    MainThread:3043945 [wandb_run.py:_footer_sync_info():3816] logging synced files

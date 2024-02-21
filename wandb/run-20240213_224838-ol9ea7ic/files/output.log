@@ -1,0 +1,129 @@
+Starting experiment...
+Start of experience:  0
+Current Classes:  [0, 35, 5, 40, 10, 45, 15, 20, 25, 30]
+-- >> Start of training phase << --
+-- >> Start of eval phase << --
+-- Starting eval on experience 0 (Task 0) from test stream --
+
+
+
+
+
+
+
+
+
+100%|████████████████████████████████████████████████████████████████████████████████| 352/352 [00:20<00:00, 17.45it/s]
+> Eval on experience 0 (Task 0) from test stream ended.
+	Top1_Acc_Exp/eval_phase/test_stream/Task000/Exp000 = 0.0082
+-- >> End of eval phase << --
+	ConfusionMatrix_Stream/eval_phase/test_stream =
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]])
+	StreamForgetting/eval_phase/test_stream = 0.0000
+	Top1_Acc_Stream/eval_phase/test_stream/Task000 = 0.0082
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 12.94it/s]
+Epoch 0 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0037
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8535
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.1297
+-- >> Start of eval phase << --
+-- Starting eval on experience 0 (Task 0) from test stream --
+
+
+
+
+
+
+
+
+100%|████████████████████████████████████████████████████████████████████████████████| 352/352 [00:19<00:00, 17.96it/s]
+> Eval on experience 0 (Task 0) from test stream ended.
+	Top1_Acc_Exp/eval_phase/test_stream/Task000/Exp000 = 0.0243
+-- >> End of eval phase << --
+	ConfusionMatrix_Stream/eval_phase/test_stream =
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0]])
+	StreamForgetting/eval_phase/test_stream = 0.0000
+	Top1_Acc_Stream/eval_phase/test_stream/Task000 = 0.0243
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 12.95it/s]
+Epoch 1 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0038
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8519
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.4048
+
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 13.11it/s]
+Epoch 2 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0033
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8299
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.6819
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 13.13it/s]
+Epoch 3 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0032
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8271
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.8369
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 12.97it/s]
+Epoch 4 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0033
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8490
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9000
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 12.98it/s]
+Epoch 5 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0032
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8477
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9573
+-- >> Start of eval phase << --
+-- Starting eval on experience 0 (Task 0) from test stream --
+
+
+
+
+
+
+
+
+
+100%|████████████████████████████████████████████████████████████████████████████████| 352/352 [00:19<00:00, 17.72it/s]
+> Eval on experience 0 (Task 0) from test stream ended.
+	Top1_Acc_Exp/eval_phase/test_stream/Task000/Exp000 = 0.0619
+-- >> End of eval phase << --
+	ConfusionMatrix_Stream/eval_phase/test_stream =
+tensor([[ 3,  0,  0,  ...,  0,  0,  0],
+        [ 1,  0,  0,  ...,  0,  0,  0],
+        [16,  0,  0,  ...,  0,  0,  0],
+        ...,
+        [10,  0,  0,  ...,  0,  0,  0],
+        [ 0,  0,  0,  ...,  0,  0,  0],
+        [15,  0,  0,  ...,  0,  0,  0]])
+	StreamForgetting/eval_phase/test_stream = 0.0000
+	Top1_Acc_Stream/eval_phase/test_stream/Task000 = 0.0619
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 13.03it/s]
+Epoch 6 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0037
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8402
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9820
+100%|██████████████████████████████████████████████████████████████████████████████████| 24/24 [00:01<00:00, 13.01it/s]
+Epoch 7 ended.
+	RunningTime_Epoch/train_phase/train_stream/Task000 = 0.0034
+	Time_Epoch/train_phase/train_stream/Task000 = 1.8432
+	Top1_Acc_Epoch/train_phase/train_stream/Task000 = 0.9847
+
+ 46%|█████████████████████████████████████▌                                            | 11/24 [00:00<00:01, 12.71it/s]
+/home/zizhao/miniconda3/envs/py310/lib/python3.10/site-packages/wandb/sdk/wandb_run.py:2157: UserWarning: Run (i8850ncr) is finished. The call to `_console_raw_callback` will be ignored. Please make sure that you are using an active run.
+  lambda data: self._console_raw_callback("stdout", data),
+/home/zizhao/miniconda3/envs/py310/lib/python3.10/site-packages/wandb/sdk/wandb_run.py:2157: UserWarning: Run (uy3f3tqp) is finished. The call to `_console_raw_callback` will be ignored. Please make sure that you are using an active run.
+  lambda data: self._console_raw_callback("stdout", data),
+/home/zizhao/miniconda3/envs/py310/lib/python3.10/site-packages/wandb/sdk/wandb_run.py:2157: UserWarning: Run (7hd4ffng) is finished. The call to `_console_raw_callback` will be ignored. Please make sure that you are using an active run.
+
+ 46%|█████████████████████████████████████▌                                            | 11/24 [00:16<00:01, 12.71it/s]Files already downloaded and verified
+Files already downloaded and verified

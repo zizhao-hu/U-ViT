@@ -5,15 +5,13 @@ from .timm import trunc_normal_, Mlp
 import einops
 import torch.utils.checkpoint
 
-if hasattr(torch.nn.functional, 'scaled_dot_product_attention'):
+
+try:
+    import xformers
+    import xformers.ops
+    ATTENTION_MODE = 'xformers'
+except:
     ATTENTION_MODE = 'flash'
-else:
-    try:
-        import xformers
-        import xformers.ops
-        ATTENTION_MODE = 'xformers'
-    except:
-        ATTENTION_MODE = 'math'
 print(f'attention mode is {ATTENTION_MODE}')
 
 
@@ -136,7 +134,7 @@ class PatchEmbed(nn.Module):
 
 
 class UViT(nn.Module):
-    def __init__(self, img_size=224, patch_size=16, in_chans=3, embed_dim=768, depth=12, num_heads=12, mlp_ratio=4.,
+    def __init__(self, img_size=224, patch_size=16, in_chans=3, embed_dim=768, depth=12, c=0, v=0, num_heads=12, mlp_ratio=4.,
                  qkv_bias=False, qk_scale=None, norm_layer=nn.LayerNorm, mlp_time_embed=False, use_checkpoint=False,
                  clip_dim=768, num_clip_token=77, conv=True, skip=True):
         super().__init__()
@@ -158,8 +156,6 @@ class UViT(nn.Module):
 
         self.pos_embed = nn.Parameter(torch.zeros(1, self.extras + self.num_patches, embed_dim))
 
-        c = 1
-        v = 4
         depth -= 2*(v)
 
         self.image_blocks = nn.ModuleList([

@@ -1,0 +1,1 @@
+{"RunningTime_Epoch/train_phase/train_stream/Task000": 0.004678499474025825, "_timestamp": 1707892325.0888193, "_runtime": 21.433751344680786, "_step": 232, "Top1_Acc_Epoch/train_phase/train_stream/Task000": 0.9939979993331111, "Time_Epoch/train_phase/train_stream/Task000": 1.84689696400892, "_wandb": {"runtime": 20}}

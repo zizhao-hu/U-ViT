@@ -44,12 +44,15 @@ def get_config():
         patch_size=2,
         embed_dim=512,
         depth=12,
+        c = 3,
+        v = 3,
         num_heads=8,
         mlp_ratio=4,
         qkv_bias=False,
         mlp_time_embed=False,
         clip_dim=768,
-        num_clip_token=77
+        num_clip_token=77,
+       
     )
 
     config.dataset = d(
@@ -65,7 +68,6 @@ def get_config():
         mini_batch_size=50,
         cfg=True,
         scale=1.,
-        path='workdir/mscoco_uvit_small/default/evalsamples'
     )
 
     return config
