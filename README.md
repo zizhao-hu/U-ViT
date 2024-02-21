@@ -32,21 +32,12 @@ We use the [huggingface accelerate](https://github.com/huggingface/accelerate) l
 ```sh
 # MS-COCO (U-ViT-S/2)
 accelerate launch --num_processes 1 --mixed_precision fp16 train_t2i_discrete.py --config=configs/mscoco_uvit_small.py
+```
 
 ## Evaluation (Compute FID)
 
-We use the [huggingface accelerate](https://github.com/huggingface/accelerate) library for efficient inference with mixed precision and multiple gpus. The following is the evaluation command:
-```sh
-# the evaluation setting
-num_processes=2  # the number of gpus you have, e.g., 2
-eval_script=eval.py  # the evaluation script, one of <eval.py|eval_ldm.py|eval_ldm_discrete.py|eval_t2i_discrete.py>
-                     # eval.py: for models trained with train.py (i.e., pixel space models)
-                     # eval_ldm.py: for models trained with train_ldm.py (i.e., latent space models with continuous timesteps)
-                     # eval_ldm_discrete.py: for models trained with train_ldm_discrete.py (i.e., latent space models with discrete timesteps)
-                     # eval_t2i_discrete.py: for models trained with train_t2i_discrete.py (i.e., text-to-image models on latent space)
-config=configs/cifar10_uvit_small.py  # the training configuration
-
 # launch evaluation
+```sh
 accelerate launch --multi_gpu --num_processes $num_processes --mixed_precision fp16 eval_script --config=$config
 ```
 The generated images are stored in a temperary directory, and will be deleted after evaluation. If you want to keep these images, set `--config.sample.path=/save/dir`.
