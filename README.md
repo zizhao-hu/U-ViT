@@ -34,11 +34,11 @@ In addition to evaluation, these reference statistics are used to monitor FID du
 In config files
 ```sh
 config.nnet = d(
-name='uvit_t2i'
-...,
-c = c,
-v = v,
-...
+    name='uvit_t2i'
+    ...,
+    c = c,
+    v = v,
+    ...
 )
 # change c and v for caption and image transformer depths
 # change name to 'uvit_t2i_old','uvit_t2i_cross','uvit_t2i', for original U-ViT-small, cross-attention, and self-attention Models
