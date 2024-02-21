@@ -34,50 +34,14 @@ We use the [huggingface accelerate](https://github.com/huggingface/accelerate) l
 accelerate launch --num_processes 1 --mixed_precision fp16 train_t2i_discrete.py --config=configs/mscoco_uvit_small.py
 ```
 
-## Evaluation (Compute FID)
+## Evaluation (MS-COCO (U-ViT-S/2))
 
-# launch evaluation
 ```sh
-accelerate launch --multi_gpu --num_processes $num_processes --mixed_precision fp16 eval_script --config=$config
+# FID
+accelerate launch --multi_gpu --num_processes 1 --mixed_precision fp16 eval_t2i_discrete.py --config=configs/mscoco_uvit_small.py --nnet_path=mscoco_uvit_small.pth
+
+# CLIP Score
 ```
-The generated images are stored in a temperary directory, and will be deleted after evaluation. If you want to keep these images, set `--config.sample.path=/save/dir`.
-
-
-We provide all commands to reproduce FID results in the paper:
-```sh
-# CIFAR10 (U-ViT-S/2)
-accelerate launch --multi_gpu --num_processes 4 --mixed_precision fp16 eval.py --config=configs/cifar10_uvit_small.py --nnet_path=cifar10_uvit_small.pth
-
-# CelebA 64x64 (U-ViT-S/4)
-accelerate launch --multi_gpu --num_processes 4 --mixed_precision fp16 eval.py --config=configs/celeba64_uvit_small.py --nnet_path=celeba64_uvit_small.pth
-
-# ImageNet 64x64 (U-ViT-M/4)
-accelerate launch --multi_gpu --num_processes 8 --mixed_precision fp16 eval.py --config=configs/imagenet64_uvit_mid.py --nnet_path=imagenet64_uvit_mid.pth
-
-# ImageNet 64x64 (U-ViT-L/4)
-accelerate launch --multi_gpu --num_processes 8 --mixed_precision fp16 eval.py --config=configs/imagenet64_uvit_large.py --nnet_path=imagenet64_uvit_large.pth
-
-# ImageNet 256x256 (U-ViT-L/2)
-accelerate launch --multi_gpu --num_processes 8 --mixed_precision fp16 eval_ldm.py --config=configs/imagenet256_uvit_large.py --nnet_path=imagenet256_uvit_large.pth
-
-# ImageNet 256x256 (U-ViT-H/2)
-accelerate launch --multi_gpu --num_processes 8 --mixed_precision fp16 eval_ldm_discrete.py --config=configs/imagenet256_uvit_huge.py --nnet_path=imagenet256_uvit_huge.pth
-
-# ImageNet 512x512 (U-ViT-L/4)
-accelerate launch --multi_gpu --num_processes 8 --mixed_precision fp16 eval_ldm.py --config=configs/imagenet512_uvit_large.py --nnet_path=imagenet512_uvit_large.pth
-
-# ImageNet 512x512 (U-ViT-H/4)
-accelerate launch --multi_gpu --num_processes 8 --mixed_precision fp16 eval_ldm_discrete.py --config=configs/imagenet512_uvit_huge.py --nnet_path=imagenet512_uvit_huge.pth
-
-# MS-COCO (U-ViT-S/2)
-accelerate launch --multi_gpu --num_processes 4 --mixed_precision fp16 eval_t2i_discrete.py --config=configs/mscoco_uvit_small.py --nnet_path=mscoco_uvit_small.pth
-
-# MS-COCO (U-ViT-S/2, Deep)
-accelerate launch --multi_gpu --num_processes 4 --mixed_precision fp16 eval_t2i_discrete.py --config=configs/mscoco_uvit_small.py --config.nnet.depth=16 --nnet_path=mscoco_uvit_small_deep.pth
-```
-
-
-
 
 ## References
 If you find the code useful for your research, please consider citing
