@@ -42,6 +42,8 @@ config.nnet = d(
 )
 # change c and v for caption and image transformer depths
 # change name to 'uvit_t2i_old','uvit_t2i_cross','uvit_t2i', for original U-ViT-small, cross-attention, and self-attention Models
+# name='uvit_t2i', c=0, v=0 is equivalent to U-ViT-small, but cannot load the pretrained weights provided by U-ViT paper.
+# name='uvit_t2i_old' will ignore c and v values.
 ```
 ## Training
 We use the [huggingface accelerate](https://github.com/huggingface/accelerate) library to help train with distributed data parallel and mixed precision. The following is the training command:
